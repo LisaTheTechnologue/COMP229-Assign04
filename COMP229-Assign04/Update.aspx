@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Update.aspx.cs" Inherits="COMP229_Assign04.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your application description page.</h3>
-    <p>Use this area to provide additional information.</p>
+    <!--a.	be a stand-alone page or have its functionality included in the Model Page.
+b.	display the model data from the Model Page in appropriate inputs. 
+c.	allow for changing of any data about the model.
+d.	update the collection of models with the new data.
+-->
 </asp:Content>
