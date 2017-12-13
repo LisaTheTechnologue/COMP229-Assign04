@@ -179,4 +179,4 @@
 		],
 		"imageUrl":"http://wrathofkings.com/ks/wp-content/uploads/2013/09/NSlonghorn_front1.jpg"
 	}
-]
+]{"name":"Test1","faction":"Test2","rank":5,"_base":2,"size":1,"deploymentZone":"C","traits":null,"types":null,"defenseChart":null,"mobility":0,"willpower":0,"resiliance":0,"wounds":0,"actions":null,"specialAbilities":null,"imageUrl":null}

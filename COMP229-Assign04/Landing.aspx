@@ -12,20 +12,21 @@ f.	allow for emailing of the new models json file to an email of the user’s ch
 -->
     <div class="jumbotron">
     </div>
+    <div class="landing-body">
+        <asp:GridView ID="listModel" runat="server" AutoGenerateColumns="false" CssClass="listModelStyle">
+            <Columns>
+                <asp:BoundField DataField="name" HeaderText="Name" />
+                <asp:BoundField DataField="faction" HeaderText="Faction" />
+                <asp:BoundField DataField="rank" HeaderText="Rank" />
+                <asp:BoundField DataField="base" HeaderText="Base" />
+                <asp:BoundField DataField="size" HeaderText="Size" />
+                <asp:BoundField DataField="deploymentZone" HeaderText="Deployment Zone" />
+            </Columns>
+        </asp:GridView>
+        <br />
 
-    <asp:GridView ID="listModel" runat="server" AutoGenerateColumns="false" CssClass="listModelStyle">
-        <Columns>
-            <asp:BoundField DataField="name" HeaderText="Name" />
-            <asp:BoundField DataField="faction" HeaderText="Faction" />
-            <asp:BoundField DataField="rank" HeaderText="Rank" />
-            <asp:BoundField DataField="base" HeaderText="Base" />
-            <asp:BoundField DataField="size" HeaderText="Size" />
-            <asp:BoundField DataField="deploymentZone" HeaderText="Deployment Zone" />
-        </Columns>
-    </asp:GridView>
-
-
-    <asp:Button ID="showAdd" runat="server" CssClass="btn btn-primary" OnClick="showAdd_Click" Text="Add a New Char" />
+        <asp:Button ID="showAdd" runat="server" CssClass="btn btn-primary" OnClick="showAdd_Click" Text="Add a New Char" />
+    </div>
     <div id="addition" runat="server">
         <div class="row">
             <div class="col-md-4">
@@ -68,8 +69,9 @@ f.	allow for emailing of the new models json file to an email of the user’s ch
                 <asp:Button ID="addModel" runat="server" CssClass="btn btn-primary" OnClick="addModel_Click" Text="Add" />
             </div>
             <div class="col-md-6">
-                <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="addModel_Click" Text="Cancel" />
+                <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="cancelModel_Click" Text="Cancel" />
             </div>
         </div>
+        <div id="errorMsg" runat="server"></div>
     </div>
 </asp:Content>

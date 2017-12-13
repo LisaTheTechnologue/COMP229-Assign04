@@ -35,10 +35,18 @@ textarea {
 }
 
 /*Landing*/
+.landing-body {
+    text-align:center;
+}
 #MainContent_addition {
     display:none;
-}
-.MainContent_listModelStyle {
-    width:100%;
+    text-align:center;
     background-color: white;
+}
+.listModelStyle {
+    background-color: white;
+    text-align:center;
+}
+.listModelStyle > th{
+    font-size:24px;
 }
