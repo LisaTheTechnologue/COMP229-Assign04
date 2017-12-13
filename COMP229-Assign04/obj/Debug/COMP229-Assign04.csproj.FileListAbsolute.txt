@@ -83,3 +83,5 @@ C:\Users\Jolisa Chan\Downloads\Year 2\COMP229\COMP229-Assign04\COMP229-Assign04\
 C:\Users\Jolisa Chan\Downloads\Year 2\COMP229\COMP229-Assign04\COMP229-Assign04\obj\Debug\COMP229-Assign04.csproj.CoreCompileInputs.cache
 C:\Users\Jolisa Chan\Downloads\Year 2\COMP229\COMP229-Assign04\COMP229-Assign04\obj\Debug\COMP229-Assign04.dll
 C:\Users\Jolisa Chan\Downloads\Year 2\COMP229\COMP229-Assign04\COMP229-Assign04\obj\Debug\COMP229-Assign04.pdb
+C:\Users\Jolisa Chan\Downloads\Year 2\COMP229\COMP229-Assign04\COMP229-Assign04\bin\Json.dll
+C:\Users\Jolisa Chan\Downloads\Year 2\COMP229\COMP229-Assign04\COMP229-Assign04\bin\Json.pdb

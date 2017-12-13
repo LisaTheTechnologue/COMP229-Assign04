@@ -21,6 +21,7 @@ textarea {
 
 .jumbotron {
     background-image:url('../Assets/wok_banner.jpg');
+    height:100%;
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -31,4 +32,13 @@ textarea {
     .body-content {
         padding: 0;
     }
+}
+
+/*Landing*/
+#MainContent_addition {
+    display:none;
+}
+.MainContent_listModelStyle {
+    width:100%;
+    background-color: white;
 }

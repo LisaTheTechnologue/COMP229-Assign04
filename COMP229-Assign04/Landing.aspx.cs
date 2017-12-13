@@ -8,45 +8,63 @@ using Newtonsoft.Json;
 using System.IO;
 using COMP229_Assign04.Models;
 using System.Linq;
-using System.Net.Mail;
+using System.Data;
 
 namespace COMP229_Assign04
 {
     public partial class _Default : Page
     {
+        DataTable collection;
+        string filePath = HttpContext.Current.Server.MapPath("~/Assets/Assign04.json");
+        bool showed = false;
+
+        //List<CharModel> collection;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // DO NOT use local paths. Use relative pathing; ideally to a file in the project.
-            var filePath = @"Assets\Assign04.json";
-            //if (File.Exists(filePath))
-            if (false)
-            {
-                var jsonString = File.ReadAllText(filePath);
-                //TODO: Get json file contents into string
-                var collection = JsonConvert.DeserializeObject<List<CharModel>>(jsonString);
-                var i = 0;
-            }
-            else
-            {
-                Hold();
-            }
+            GridViewDisplay();
         }
-        public void Hold()
+        public DataTable getNames()
         {
-            using (var client = new HttpClient())
+            
+            var jsonString = File.ReadAllText(filePath);
+            //collection = JsonConvert.DeserializeObject<List<CharModel>>(jsonString);
+            // DO NOT use local paths. Use relative pathing; ideally to a file in the project.
+            using (StreamReader file = File.OpenText(filePath))
             {
-                var apiPath = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT&apikey=demo";
-                var jsonString = client.GetStringAsync(apiPath).Result;
-                var stocks = JsonConvert.DeserializeObject<StockReturn>(jsonString);
-                var stock = stocks.TimeSeriesDaily.FirstOrDefault(tItem => DateTime.Parse(tItem.Key) < DateTime.Now.AddDays(-1));
-
-                // Note how this variable has a value: FirstOrDefault
-                var _default = stocks.TimeSeriesDaily.FirstOrDefault(tItem => DateTime.Parse(tItem.Key) > DateTime.Now);
-
-                // But this variable throws an error: First
-                var fail = stocks.TimeSeriesDaily.First(tItem => DateTime.Parse(tItem.Key) > DateTime.Now);
-
-                var i = 0;
+                // deserialize JSON directly from a file
+                JsonSerializer serializer = new JsonSerializer();
+                //CharModel charModel = (CharModel)serializer.Deserialize(file, typeof(CharModel));
+                collection = JsonConvert.DeserializeObject<DataTable>(jsonString);
+            }
+            return collection;
+        }
+        public void GridViewDisplay()
+        {
+            listModel.DataSource = getNames();
+            listModel.DataBind();
+        }
+        protected void showAdd_Click(object sender, EventArgs e)
+        {
+            if (showed == false)
+            {
+                addition.Style.Add("display", "block");
+                showed = true;
+            } else addition.Style.Add("display", "none");
+        }
+        protected void addModel_Click(object sender, EventArgs e)
+        {
+            CharModel _data = new CharModel();
+            _data.charName = tbName.Text;
+            _data.faction = tbFaction.Text;
+            _data.rank = int.Parse(tbRank.Text);
+            _data.size = int.Parse(tbSize.Text);
+            _data.deploymentZone = tbDZone.Text;
+            _data._base = int.Parse(tbBase.Text);
+            using (StreamWriter writeFile = File.AppendText(filePath))
+            {
+                // deserialize JSON directly from a file
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(writeFile, _data);
             }
         }
     }
