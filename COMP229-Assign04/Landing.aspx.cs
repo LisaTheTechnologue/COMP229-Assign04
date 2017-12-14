@@ -50,26 +50,32 @@ namespace COMP229_Assign04
         }
         protected void addModel_Click(object sender, EventArgs e)
         {
-            List<CharModel> data = new List<CharModel>();
-            CharModel _data = new CharModel();
             try
             {
                 if (ValidateField())
                 {
-                    
-                    _data.charName = tbName.Text;
-                    _data.faction = tbFaction.Text;
-                    _data.rank = int.Parse(tbRank.Text);
-                    _data.size = int.Parse(tbSize.Text);
-                    _data.deploymentZone = tbDZone.Text;
-                    _data._base = int.Parse(tbBase.Text);
-                    data.Add(_data);
-                    using (StreamWriter writeFile = File.AppendText(filePath))
+                    CharModel _data = new CharModel
                     {
-                        // deserialize JSON directly from a file
-                        JsonSerializer serializer = new JsonSerializer();
-                        serializer.Serialize(writeFile, _data);
+                        charName = tbName.Text,
+                        faction = tbFaction.Text,
+                        rank = int.Parse(tbRank.Text),
+                        size = int.Parse(tbSize.Text),
+                        deploymentZone = tbDZone.Text,
+                        _base = int.Parse(tbBase.Text)
+                    };
+                    string newJson;
+                    using (StreamReader r = new StreamReader(filePath))
+                    {
+                        string json = r.ReadToEnd();
+                        List<CharModel> models = JsonConvert.DeserializeObject<List<CharModel>>(json);
+                        models.Add(_data);
+                        newJson = JsonConvert.SerializeObject(models);
                     }
+                    File.WriteAllText(filePath, newJson);
+                    // deserialize JSON directly from a file
+                    //JsonSerializer serializer = new JsonSerializer();
+                    //serializer.Serialize(writeFile, _data);
+
                     errorMsg.InnerHtml = "Added new Char";
                 }
                 else errorMsg.InnerHtml += "Please field all of the fields!";

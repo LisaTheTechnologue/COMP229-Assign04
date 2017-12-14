@@ -5,8 +5,8 @@
 --a.	identify the game (Wrath of Kings) and its brand.
 --b.	provide a list of all the models in a models collection based on the assign04.json file. 
         These details will be obtained using deserializtion.
-c.	allow for the addition of new models, updating the model collection.
-d.	allow for selecting a single model for display on the Model Page.
+--c.	allow for the addition of new models, updating the model collection.
+-d.	allow for selecting a single model for display on the Model Page.
 e.	allow for saving the updated models collection to a new json file via serialization.
 f.	allow for emailing of the new models json file to an email of the user’s choice. See Instruction 7.
 -->
@@ -21,7 +21,8 @@ f.	allow for emailing of the new models json file to an email of the user’s ch
                 <asp:BoundField DataField="base" HeaderText="Base" />
                 <asp:BoundField DataField="size" HeaderText="Size" />
                 <asp:BoundField DataField="deploymentZone" HeaderText="Deployment Zone" />
-            </Columns>
+                <asp:HyperLinkField ID="selectModel" Text='More Details' NavigateUrl='<%#"~/Model.aspx?modelName=" + Bind("name") %>' runat="server"></asp:HyperLinkField>
+           </Columns>
         </asp:GridView>
         <br />
 
