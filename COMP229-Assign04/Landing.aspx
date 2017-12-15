@@ -66,10 +66,13 @@ f.	allow for emailing of the new models json file to an email of the user’s ch
             <div class="col-md-8">
                 <asp:TextBox ID="tbDZone" runat="server" />
             </div>
-            <div class="col-md-6">
-                <asp:Button ID="addModel" runat="server" CssClass="btn btn-primary" OnClick="addModel_Click" Text="Add" />
+            <div class="col-md-4">
+                <asp:Button ID="addModel" runat="server" CssClass="btn btn-primary" OnClick="addModel_Click" Text="Add to existed collection" />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <asp:Button ID="addModel2" runat="server" CssClass="btn btn-primary" OnClick="addModel2_Click" Text="Add to new collection" />
+            </div>
+            <div class="col-md-4">
                 <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="cancelModel_Click" Text="Cancel" />
             </div>
         </div>
