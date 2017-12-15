@@ -21,6 +21,7 @@ namespace COMP229_Assign04
         bool showed = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+            createJSON();
             GridViewDisplay();
         }
         /*deserialize the original file and have the collection of Model*/
@@ -35,6 +36,7 @@ namespace COMP229_Assign04
             }
             return modelCollection;
         }
+        /*change the object to a DataTable for displaying purpose*/
         public DataTable getNames(string filePath)
         {
             var jsonString = File.ReadAllText(filePath);
@@ -46,6 +48,7 @@ namespace COMP229_Assign04
             }
             return collection;
         }
+        /*check if new file exist and run the table*/
         public void GridViewDisplay()
         {
             string fileName = "~/Assets/newJsonFile.json";
@@ -57,8 +60,8 @@ namespace COMP229_Assign04
             }
             else
                 Console.WriteLine("File does not exist.");
-            
         }
+        /*show the add form*/
         protected void showAdd_Click(object sender, EventArgs e)
         {
             if (showed == false)
@@ -68,30 +71,14 @@ namespace COMP229_Assign04
             }
             else addition.Style.Add("display", "none");
         }
+        /*user add new model*/
         protected void addModel_Click(object sender, EventArgs e)
         {
             try
             {
-                if (ValidateField())
-                {
-                    //CharModel _data = new CharModel
-                    //{
-                    //charName = tbName.Text,
-                    //faction =   tbFaction.Text,
-                    //rank =      int.Parse(tbRank.Text),
-                    //size =      int.Parse(tbSize.Text),
-                    //deploymentZone = tbDZone.Text,
-                    //_base =             int.Parse(tbBase.Text)
-                    //};
-                    modelCollection.Add(modelObj(tbName.Text, tbFaction.Text, int.Parse(tbRank.Text), int.Parse(tbSize.Text), tbDZone.Text, int.Parse(tbBase.Text)));
-
-                    // deserialize JSON directly from a file
-                    //JsonSerializer serializer = new JsonSerializer();
-                    //serializer.Serialize(writeFile, _data);
-
-                    errorMsg.InnerHtml = "Added new Char";
-                }
-                else errorMsg.InnerHtml += "Please field all of the fields!";
+                var newModelObj = modelObj(tbName.Text, tbFaction.Text, int.Parse(tbRank.Text), int.Parse(tbSize.Text), tbDZone.Text, int.Parse(tbBase.Text), tbActionName.Text, tbSpcAbl.Text);
+                modelCollection.Add(newModelObj);
+                errorMsg.InnerHtml = "Added new Char";
             }
             catch (Exception ex)
             {
@@ -101,8 +88,8 @@ namespace COMP229_Assign04
             {
 
             }
-
         }
+        /*user cancel the form*/
         protected void cancelModel_Click(object sender, EventArgs e)
         {
             tbName.Text = "";
@@ -113,40 +100,25 @@ namespace COMP229_Assign04
             tbBase.Text = "";
             errorMsg.InnerHtml = "";
         }
-        protected bool ValidateField()
-        {
-            bool validate = true;
-            if (
-            tbName.Text == "" ||
-            tbFaction.Text == "" ||
-            tbRank.Text == "" ||
-            tbSize.Text == "" ||
-            tbDZone.Text == "" ||
-            tbBase.Text == "")
-            {
-                return validate = false;
-            }
-            else return validate;
-        }
-        protected CharModel modelObj(string charName, string faction, int rank, int size, string deploymentZone, int _base)
+        /*user add new model -> create a new CharModel obj*/
+        protected CharModel modelObj(string charName, string faction, int rank, int size, string deploymentZone, int _base, string actionName, string spcAbiName)
         {
             Models.Action actionsDef = new Models.Action
             {
-                name = "Savage Blow",
-                type = "Melee",
-                rating = 1,
-                range = "0"
+                name = actionName,
+                type = "",
+                rating = 0,
+                range = ""
             };
             List<Models.Action> actionsCollection = new List<Models.Action> { };
             actionsCollection.Add(actionsDef);
             Models.SpecialAbility specialAbilitiesDef = new Models.SpecialAbility
             {
-                name = "Pain Fulled",
-                description = "While this model has 1 or more damage on it, it gains [+1] Mobility, and its melee attacks gain Unstoppable(1) and [+1] Rating."
+                name = spcAbiName,
+                description = "N/A"
             };
             List<Models.SpecialAbility> specialAbilities = new List<Models.SpecialAbility> { };
             specialAbilities.Add(specialAbilitiesDef);
-
             CharModel obj = new CharModel
             {
                 charName = charName,
@@ -155,19 +127,20 @@ namespace COMP229_Assign04
                 _base = _base,
                 size = size,
                 deploymentZone = "C",
-                traits = ["Union Worker"],
-                types = ["Infantry"],
-                defenseChart = ["OVERPOWER", "STRIKE", "STRIKE", "STRIKE", "STRIKE", "BLOCK", "BLOCK", "ARMOR", "ARMOR", "ARMOR"],
-                mobility = 5,
-                willpower = 4,
-                resiliance = 1,
-                wounds = 2,
+                traits = new string[] { "N/A" },
+                types = new string[] { "N/A" },
+                defenseChart = new string[] { "N/A" },
+                mobility = 0,
+                willpower = 0,
+                resiliance = 0,
+                wounds = 0,
                 actions = actionsCollection,
                 specialAbilities = specialAbilities,
-                imageUrl = "http://wrathofkings.com/ks/wp-content/uploads/2013/09/TKworker2_front.jpg"
+                imageUrl = "N/A"
             };
             return obj;
         }
+        /*create the new file*/
         protected void createJSON()
         {
             getCharModel();
@@ -179,44 +152,9 @@ namespace COMP229_Assign04
                     serializer.Serialize(streamWriter, i);
                 }
             }
+        }
 
-        }
-        protected void readJSON()
-        {
-            //string jrf = System.IO.File.ReadAllText(this.jsonFileLocation);
-            //JavaScriptSerializer serializer = new JavaScriptSerializer();
-            //private List jsonAsList = new List();
-            //jsonAsList = serializer.Deserialize<List>(jrf.ToString());
-        }
-        protected void accessDataFromJson()
-        {
-            /*How to access data stored in the Things Class
-        So now that we are able to create, write and read JSON we need to have a mechanism to use the data eg.find values buried in the(manySingleThings) List of(SingleThing) C# classes. This is surprisingly easy.
 
-        We just ask the “jsonAsList” to retrieve the entire C# class which contains a particular variable value that we are interested in.
-
-        SingleThing theNeedle = jsonAsList.Find(x => x.thingName.ToString() == "Trevor");
-            Now that we have the new class instantiated we can access its variables*/
-
-            string thingName = theNeedle.thingName;
-            //Trevor
-            string descriptionOfAThing = theNeedle.thingDescription;
-            //Likes cups of tea
-        }
-        static void Load()
-        {
-            memberList = JsonConvert.DeserializeObject<List<FacultyMember>>(System.IO.File.ReadAllText(filename));
-            AddNew();
-            Save();
-        }
-        protected void checkExistJsonFile()
-        {
-            string fileName = @"c:\temp\Mahesh.txt";
-            if (File.Exists(fileName))
-                Console.WriteLine("File exists.");
-            else
-                Console.WriteLine("File does not exist.");
-        }
         protected void SendEmail(object sender, EventArgs e)
         {
             SmtpClient smtpClient = new SmtpClient("smtp-mail.outlook.com", 587);
@@ -266,14 +204,6 @@ namespace COMP229_Assign04
                 var i = 0;
             }
         }
-        protected void add()
-        {
-            dynamic dynJson = JsonConvert.DeserializeObject(json);
-            foreach (var item in dynJson)
-            {
-                Console.WriteLine("{0} {1} {2} {3}\n", item.id, item.displayName,
-                    item.slug, item.imageUrl);
-            }
-        }
+
     }
 }

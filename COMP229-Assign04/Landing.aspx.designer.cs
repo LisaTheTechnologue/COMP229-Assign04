@@ -67,6 +67,15 @@ namespace COMP229_Assign04 {
         protected global::System.Web.UI.WebControls.TextBox tbName;
         
         /// <summary>
+        /// tbNameValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tbNameValidate;
+        
+        /// <summary>
         /// lbFaction control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace COMP229_Assign04 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbFaction;
+        
+        /// <summary>
+        /// tbFactionValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tbFactionValidate;
         
         /// <summary>
         /// lbRank control.
@@ -103,6 +121,15 @@ namespace COMP229_Assign04 {
         protected global::System.Web.UI.WebControls.TextBox tbRank;
         
         /// <summary>
+        /// tbRankValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tbRankValidate;
+        
+        /// <summary>
         /// lbBase control.
         /// </summary>
         /// <remarks>
@@ -119,6 +146,15 @@ namespace COMP229_Assign04 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbBase;
+        
+        /// <summary>
+        /// tbBaseValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tbBaseValidate;
         
         /// <summary>
         /// lbSize control.
@@ -139,6 +175,15 @@ namespace COMP229_Assign04 {
         protected global::System.Web.UI.WebControls.TextBox tbSize;
         
         /// <summary>
+        /// tbSizeValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tbSizeValidate;
+        
+        /// <summary>
         /// lbDZone control.
         /// </summary>
         /// <remarks>
@@ -155,6 +200,69 @@ namespace COMP229_Assign04 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDZone;
+        
+        /// <summary>
+        /// tbDZoneValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tbDZoneValidate;
+        
+        /// <summary>
+        /// lbActionName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbActionName;
+        
+        /// <summary>
+        /// tbActionName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbActionName;
+        
+        /// <summary>
+        /// tbActionNameValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tbActionNameValidate;
+        
+        /// <summary>
+        /// lbSpcAbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSpcAbl;
+        
+        /// <summary>
+        /// tbSpcAbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbSpcAbl;
+        
+        /// <summary>
+        /// tbSpcAblValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator tbSpcAblValidate;
         
         /// <summary>
         /// addModel control.
@@ -175,13 +283,13 @@ namespace COMP229_Assign04 {
         protected global::System.Web.UI.WebControls.Button addModel2;
         
         /// <summary>
-        /// Button1 control.
+        /// cancelForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button cancelForm;
         
         /// <summary>
         /// errorMsg control.
