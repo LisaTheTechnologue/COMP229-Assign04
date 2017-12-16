@@ -6,28 +6,30 @@
 --b.	provide a list of all the models in a models collection based on the assign04.json file. 
         These details will be obtained using deserializtion.
 --c.	allow for the addition of new models, updating the model collection.
--d.	allow for selecting a single model for display on the Model Page.
-e.	allow for saving the updated models collection to a new json file via serialization.
-f.	allow for emailing of the new models json file to an email of the user’s choice. See Instruction 7.
+d.	allow for selecting a single model for display on the Model Page.
+--e.	allow for saving the updated models collection to a new json file via serialization.
+--f.	allow for emailing of the new models json file to an email of the user’s choice. See Instruction 7.
 -->
     <div class="jumbotron">
     </div>
     <div class="landing-body">
-        <asp:GridView ID="listModel" runat="server" AutoGenerateColumns="false" CssClass="listModelStyle">
+        <asp:GridView ID="listModel" runat="server" AutoGenerateColumns="false" CssClass="listModelStyle" RowDataBound="listModel_RowDataBound" EnableViewState="false">
             <Columns>
-                <asp:BoundField DataField="name" HeaderText="Name" />
+                 <asp:HyperLinkField DataNavigateUrlFields="charName" DataTextField="charName" 
+                    DataNavigateUrlFormatString="Model.aspx?Name={0}"  HeaderText="Name" />     
                 <asp:BoundField DataField="faction" HeaderText="Faction" />
                 <asp:BoundField DataField="rank" HeaderText="Rank" />
-                <asp:BoundField DataField="base" HeaderText="Base" />
+                <asp:BoundField DataField="_base" HeaderText="Base" />
                 <asp:BoundField DataField="size" HeaderText="Size" />
                 <asp:BoundField DataField="deploymentZone" HeaderText="Deployment Zone" />
-                <asp:HyperLinkField ID="selectModel" Text='More Details' NavigateUrl='<%#"~/Model.aspx?modelName=" + Bind("name") %>' runat="server"></asp:HyperLinkField>
+                             
            </Columns>
+            
         </asp:GridView>
         <br />
-
-        <asp:Button ID="showAdd" runat="server" CssClass="btn btn-primary" OnClick="showAdd_Click" Text="Add a New Char" />
+        <%--<asp:Button ID="showAdd" runat="server" CssClass="btn btn-primary" OnClick="ShowAdd_Click" Text="Add a New Char" />--%>
     </div>
+
     <div id="addition" runat="server">
         <div class="row">
             <div class="col-md-4">
@@ -86,13 +88,10 @@ f.	allow for emailing of the new models json file to an email of the user’s ch
                 <asp:TextBox ID="tbSpcAbl" runat="server" />
                 <asp:RequiredFieldValidator ID="tbSpcAblValidate" runat="server" ErrorMessage="Required" ControlToValidate="tbSpcAbl"/>
             </div>
-            <div class="col-md-4">
-                <asp:Button ID="addModel" runat="server" CssClass="btn btn-primary" OnClick="addModel_Click" Text="Add to existed collection" />
+            <div class="col-md-6">
+                <asp:Button ID="addModel" runat="server" CssClass="btn btn-primary" OnClick="addModel_Click" Text="Add" />
             </div>
-            <div class="col-md-4">
-                <asp:Button ID="addModel2" runat="server" CssClass="btn btn-primary" OnClick="addModel2_Click" Text="Add to new collection" />
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <asp:Button ID="cancelForm" runat="server" CssClass="btn btn-primary" OnClick="cancelModel_Click" Text="Cancel" />
             </div>
         </div>

@@ -22,24 +22,6 @@ namespace COMP229_Assign04 {
         protected global::System.Web.UI.WebControls.GridView listModel;
         
         /// <summary>
-        /// selectModel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLinkField selectModel;
-        
-        /// <summary>
-        /// showAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button showAdd;
-        
-        /// <summary>
         /// addition control.
         /// </summary>
         /// <remarks>
@@ -272,15 +254,6 @@ namespace COMP229_Assign04 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button addModel;
-        
-        /// <summary>
-        /// addModel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addModel2;
         
         /// <summary>
         /// cancelForm control.
