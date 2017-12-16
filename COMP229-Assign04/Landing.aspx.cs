@@ -17,8 +17,8 @@ namespace COMP229_Assign04
 {
     public partial class _Default : Page
     {
-
         List<CharModel> modelCollection;
+        List<CharModel> modelCollectionList;
         string filePath = HttpContext.Current.Server.MapPath("~/Assets/Assign04.json");
         string fileName = HttpContext.Current.Server.MapPath("~/Assets/newJsonFile.json");
         bool showed = false;
@@ -43,7 +43,7 @@ namespace COMP229_Assign04
         public DataTable getNames(string fileName)
         {
             var jsonString = File.ReadAllText(fileName);
-            List<CharModel> modelCollectionList = JsonConvert.DeserializeObject<List<CharModel>>(jsonString);
+            modelCollectionList = JsonConvert.DeserializeObject<List<CharModel>>(jsonString);
             ListToDataTable converter = new ListToDataTable();
             DataTable collection = converter.ToDataTable(modelCollectionList);
             return collection;
@@ -77,22 +77,22 @@ namespace COMP229_Assign04
         /*user add new model*/
         protected void addModel_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 var newModelObj = modelObj(tbName.Text, tbFaction.Text, int.Parse(tbRank.Text), int.Parse(tbSize.Text), tbDZone.Text, int.Parse(tbBase.Text), tbActionName.Text, tbSpcAbl.Text);
-                modelCollection.Add(newModelObj);
+                modelCollectionList.Add(newModelObj);
                 GridViewDisplay();
                 errorMsg.InnerHtml = "Added new Char" + "<br>";
                 SendEmail(sender, e);               
-            }
-            catch (Exception ex)
-            {
-                errorMsg.InnerHtml += ex.Message + "<br>";
-            }
-            finally
-            {
+            //}
+            //catch (Exception ex)
+            //{
+            //    errorMsg.InnerHtml += ex.Message + "<br>";
+            //}
+            //finally
+            //{
 
-            }
+            //}
         }
         /*user cancel the form*/
         protected void cancelModel_Click(object sender, EventArgs e)
@@ -103,6 +103,8 @@ namespace COMP229_Assign04
             tbSize.Text = "";
             tbDZone.Text = "";
             tbBase.Text = "";
+            tbActionName.Text = "";
+            tbSpcAbl.Text = "";
             errorMsg.InnerHtml = "";
         }
         /*user add new model -> create a new CharModel obj*/

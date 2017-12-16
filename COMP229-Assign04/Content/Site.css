@@ -39,14 +39,18 @@ textarea {
     text-align:center;
 }
 #MainContent_addition {
-
     text-align:center;
     background-color: white;
 }
 .listModelStyle {
     background-color: white;
     text-align:center;
+    margin:10px;
 }
-.listModelStyle > th{
-    font-size:24px;
-}
+    .listModelStyle > th {
+        font-size: 24px;
+        text-align: center;
+    }
+    .listModelStyle > td {
+        min-width:100px;
+    }

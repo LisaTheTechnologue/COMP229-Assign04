@@ -20,7 +20,7 @@ namespace COMP229_Assign04
         string fileName = HttpContext.Current.Server.MapPath("~/Assets/newJsonFile.json");
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            displayDetail();
         }
         protected void displayDetail()
         {
@@ -34,38 +34,48 @@ namespace COMP229_Assign04
         }
         public DataTable getDetails(string filePath, string ObjAttr)
         {
-            var jsonString = File.ReadAllText(filePath);
-            var parsedObject = JObject.Parse(jsonString);
-            var modelJson = "";
-            CharModel modelObj = new CharModel();
-            switch (ObjAttr)
+            string jsonString = File.ReadAllText(fileName);
+            //JArray jsonArr = JArray.Parse(jsonString);
+            List<CharModel> obj = JsonConvert.DeserializeObject<List<CharModel>>(jsonString);
+            //dynamic modelJson;
+            ListToDataTable converter = new ListToDataTable();
+            //CharModel modelObj = new CharModel();
+            foreach (CharModel o in obj.Where(item => item.charName == modelName))
             {
-                case "model":
-                    modelJson = parsedObject["charName"].ToString();
-                    break;                    
-                case "action":                
-                    modelJson = parsedObject["charName"]["actions"].ToString();
-                    break;                    
-                case "sa":                    
-                    modelJson = parsedObject["charName"]["specialAbilities"].ToString();
-                    break;
+                switch (ObjAttr)
+                {
+                    case "model":
+                        //CharModel modelJson = o;
+                        collection = converter.ClassToDataTable<CharModel>(o);
+                        break;
+                    case "action":
+                        //List<Models.Action> modelJson = o.actions;
+                        collection = converter.ToDataTable(o.actions);
+                        break;
+                    case "sa":
+                        //modelJson = o.specialAbilities;
+                        collection = converter.ToDataTable(o.specialAbilities);
+                        break;
+                }
             }
-            modelObj = JsonConvert.DeserializeObject<CharModel>(modelJson);
-            collection = objToDataTable(modelObj);
             return collection;
         }
-        private DataTable objToDataTable(CharModel obj)
-        {
-            DataTable dt = new DataTable();
-            CharModel objModel = new CharModel();
-            dt.Columns.Add("Column_Name");
-            foreach (PropertyInfo info in typeof(CharModel).GetProperties())
-            {
-                dt.Rows.Add(info.Name);
-            }
-            dt.AcceptChanges();
-            return dt;
-        }
+        //private DataTable objToDataTable(dynamic obj)
+        //{
+        //    CharModel objModel = new CharModel();
+        //    Models.Action objAction = new Models.Action();
+        //    DataTable dt = new DataTable();
+        //    Type type = typeof(T);
+        //    var properties = type.GetProperties();
+
+        //    foreach (PropertyInfo info in properties)
+        //        foreach (var info in obj)
+        //    {
+        //        dt.Rows.Add(info.Name);
+        //    }
+        //    dt.AcceptChanges();
+        //    return dt;
+        //}
 
         protected void updateBtn_Click(object sender, EventArgs e)
         {
